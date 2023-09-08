@@ -48,27 +48,42 @@
     <input type="text" name="title" />
     <input type="date" name="time_limit"/>
     <select name="priority">
-      <option value="red">高</option>
-      <option value="pink">中</option>
-      <option value="yellow">低</option>
+     <option value="High">高</option>
+     <option value="Medium">中</option>
+     <option value="Low">低</option>
     </select>
     <input type="submit" value="追加" />
   </form>
 
   <div id='calendar'></div>
 
-  <script>
+<script>
     $(document).ready(function() {
-      $('#calendar').fullCalendar({
-        events: JSON.parse(todos).map(function(todo) {
-          return {
-            title: todo.title,
-            start: todo.time_limit,
-            color: todo.priority // 色を設定
-          };
-        })
-      });
+        $('#calendar').fullCalendar({
+            events: JSON.parse(todos).map(function(todo) {
+                let color;
+                switch (todo.priority) {
+                    case 'High':
+                        color = 'red';
+                        break;
+                    case 'Medium':
+                        color = 'pink';
+                        break;
+                    case 'Low':
+                        color = 'blue';
+                        break;
+                    default:
+                        color = 'grey';
+                }
+                return {
+                    title: todo.title,
+                    start: todo.time_limit,
+                    color: color // 色を設定
+                };
+            })
+        });
     });
-  </script>
+</script>
 </body>
 </html>
+
