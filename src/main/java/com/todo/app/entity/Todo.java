@@ -9,4 +9,5 @@ public class Todo {
     private String title;
     private int done_flg;
     private String time_limit;
+    private String priority;
 }

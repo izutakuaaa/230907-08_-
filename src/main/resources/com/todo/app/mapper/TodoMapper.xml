@@ -15,17 +15,20 @@
   	select * from todo_items where done_flg = 1
   </select>
 
+  <!-- priorityを追加 -->
   <insert id="add" parameterType="com.todo.app.entity.Todo">
-    insert into todo_items (title,time_limit)
-    values (#{title},to_date(#{time_limit},'yy-mm-dd'))
+    insert into todo_items (title, time_limit, priority)
+    values (#{title}, to_date(#{time_limit},'yy-mm-dd'), #{priority})
   </insert>
 
+  <!-- priorityを追加 -->
   <update id="update" parameterType="com.todo.app.entity.Todo">
     update todo_items set
       title = #{title},
       time_limit = to_date(#{time_limit},'yy-mm-dd'),
-      done_flg = #{done_flg}
-      where id = #{id}
+      done_flg = #{done_flg},
+      priority = #{priority}  <!-- 追加部分 -->
+    where id = #{id}
   </update>
   
   <delete id="delete" parameterType="com.todo.app.entity.Todo">
